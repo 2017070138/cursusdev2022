@@ -1,15 +1,9 @@
-# Flask Pytest routing and requests example
-Simple sample application demonstrating how to use Pytest with Flask for testing routing and requests.
-The example includes a basic "hello world" route to demonstrate a GET request. The second example is 
-a route that expects a POST request.
+# Déploiement flaskapp avec nginx en front loadbalancer sur AWS EC2
+## Déploiement de l'infra as code avec un réplica de 3 conteneurs pour l'app et nginx en front pour faire du loadbalancing
+docker-compose up --build -d --scale app=3
 
-## Setup and run instructions
-Install the requirements into a virtualenv or your environment of choice
+# Pipeline CICD
+Git -> Jenkins -> pytest -> sonarqube -> nexus -> ansible -> AWS EC2
 
-    pip install -r requirements.txt
-
-which includes
-* flask
-* pytest
-
-then run the `pytest` command 
+## Infra avec failover
+docker -> nginx -> flaskapp1 || flaskapp2 || flaskapp3
